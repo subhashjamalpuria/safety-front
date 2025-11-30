@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Safety Code Partner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Your SAFETY with Safety QR Code. Instantly get notified on phone, if your vehicle requires attention">
+    <meta name="keywords"
+        content="Your SAFETY with Safety QR Code. Instantly get notified on phone, if your vehicle requires attention">
+    <link rel="icon" href="https://s.qeeda.in/f/favicon.png" type="image/gif" sizes="16x16">
+    <meta property="og:title" content="Your SAFETY with Safety QR Code">
+    <meta property="og:site_name" content="Your SAFETY with Safety QR Code">
+    <meta property="og:url" content="https://safetycode.in/">
+    <meta property="og:image" content="https://safetycode.in/assets/imgs/qrimage.png">
+    <meta property="og:description"
+        content="Your SAFETY with Safety QR Code. Instantly get notified on phone, if your vehicle requires attention">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="assets/logo.svg" type="image/gif" sizes="16x16">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+    </svg>
+</head>
+
+<body style="background-color: black;">
+    <div class="container-fluid">
+        <div style="text-align: center; margin-top: 10px;">
+            <!-- <img src="assets/pm_logo.png" width="100px"> -->
+            <span class="title">Safety Code Partner Program</span>
+        </div>
+        <div class="top-form" id="top-form">
+            <div>
+                <input class="form-control" type="text" id="code" placeholder="Enter your code" autocomplete="off">
+            </div>
+            <div class="btn-submit">
+                <button type="submit" class="btn btn-primary" onclick="getTrackerData()">Submit</button>
+            </div>
+        </div>
+        <div class="text-center m-2">
+            <div class="spinner-grow text-light" role="status" id="spinner" style="display: none;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div class="alert alert-danger d-flex align-items-center" role="alert" id="alert-div"
+            style="display: none !important">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                <use xlink:href="#exclamation-triangle-fill" />
+            </svg>
+            <div id="alert-content">
+            </div>
+        </div>
+        <div class="pari-content mb-4 text-center" id="pari-content">
+            <a href="" target="_blank">
+                <img src="assets/qrpartner.png" alt="pm" class="img-fluid" style="align-self: center;">
+            </a>
+            <!-- <iframe width="720" height="400" frameborder="0" allowfullscreen="1" class="img-fluid"
+                src="https://www.youtube.com/embed/QkcAgjga3cg?controls=0">
+            </iframe> -->
+            <!-- <div class="accordion col-md-6 col-xs-12" id="accordionExample" style="text-align: left;">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            What is Safety Code?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            In the event of a vehicle accident, the driver and his companions are not in a position to
+                            handle themselves, in that case the passersby or the police will see the "Safety code" QR
+                            code and scan it and tell the relatives of the driver. It is possible that your relatives
+                            have got into an accident here. Please come as soon as possible and at the same time which
+                            hospital the policemen are taking them, what treatment is being given to them, their family
+                            members keep getting instant updates if seen after the accident, the relatives of the driver
+                            get information at the same time. Might be possible
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Is it legal in India?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Yes
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Is there a mobile version?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Yes, you can bet through the browser version or download the Android and iOS apps.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Are there any bonuses for newcomers?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Yes
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <div id="profile" class="profile">
+        </div>
+        <div id="detail" class="mt-4" style="display: none;">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Registration
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="registration">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Total Paid
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="totalPaid">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Deposit Amount
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="depositAmount">&#8377; 0</h2>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card border-success">
+                        <div class="card-header">
+                            Your Commission
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="commission">&#8377; 0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Paid Amount
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="paidAmount">&#8377;0</h2>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="row">
+
+                <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Remaining Amount
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="remainingAmount">&#8377; 0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Network Commission (200/deposit)
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="refCommission">&#8377;0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="row">
+
+                <div class="col-md-6 col-sm-12 col-xs-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            Your Network Users
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-text" id="referredTracker">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div id="vehtable" class="col-md-6 col-sm-12 col-xs-12 mb-4">
+            <table class="table table-striped mt-2 vehicle-table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Vehicle No</th>
+                        <th scope="col">Reg Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <!-- <span class="badge bg-success">Complete</span> -->
+
+                <tbody id="vehicle">
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mb-4" style="text-align: center; display: none;" id="logoutBtn">
+            <button class="btn btn-primary" onclick="logOut()">Logout</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        //console.log('js called');
+        //callApi("http://localhost:1337/api/qeeda/ads/campaign");
+        var spinner = document.getElementById("spinner");
+        var alertDiv = document.getElementById("alert-div");
+        var detail = document.getElementById("detail");
+        var profile = document.getElementById("profile");
+        var pariContent = document.getElementById("pari-content");
+        var logoutBtn = document.getElementById("logoutBtn");
+        var topForm = document.getElementById("top-form");
+        var vehtable = document.getElementById("vehtable");
+        //topForm.style.display = "none";
+        vehtable.style.display = "none";
+
+        var savedCode = localStorage.getItem("code");
+        console.log('savedCode', savedCode);
+        if (savedCode) {
+            pariContent.style.display = "none";
+            spinner.style.display = "inline-block";
+            detail.style.display = "none";
+            profile.style.display = "none";
+            topForm.style.display = "none";
+            vehtable.style.display = "none";
+            alertDiv.setAttribute('style', 'display: none !important');
+            callApi(savedCode);
+        }
+        function getTrackerData() {
+            let code = document.getElementById("code").value;
+            spinner.style.display = "inline-block";
+            detail.style.display = "none";
+            profile.style.display = "none";
+            vehtable.style.display = "none";
+
+            alertDiv.setAttribute('style', 'display: none !important');
+            if (!code) {
+                spinner.style.display = "none";
+                alert('Code is required!');
+                return;
+            }
+            console.log('code', code);
+            callApi(code);
+        }
+        async function callApi(code) {
+            //http://localhost:4200/admin
+            //var url = "http://localhost:1337/safteycode/partner/" + code
+            var url = "https://api.safetycode.in/safteycode/partner/" + code
+            try {
+                var response = await fetch(url);
+            } catch (error) {
+                spinner.style.display = "none";
+                alert(error)
+                return;
+            }
+            spinner.style.display = "none";
+            if (!response) {
+                alert("Server error, Try again later")
+                return;
+            }
+            var respData = await response.json();
+            if (respData.code && respData.code == "error") {
+                //alert("" + respData.message);
+                alertDiv.style.display = "block";
+                document.getElementById("alert-content").innerHTML = respData.message;
+                return;
+            }
+            //console.log('data', respData);
+            showData(respData);
+
+        }
+        function showData(data) {
+            topForm.style.display = "none";
+            pariContent.style.display = "none";
+            localStorage.setItem("code", data.partnerId);
+            var date = new Date(data.createdAt);
+            var jDate = date.toString();
+            var newDate = formatDate(jDate);
+
+            let item = `<div class="card col-md-6 col-xs-12 p-2">
+                <h6>Name: ${data.fullName}</h6>
+                <h6>Mobile: ${data.mobile}</h6>
+                <h6>Promo Code: ${data.partnerId}</h6>
+                <h6>Joining Date: ${newDate}</h6>
+            </div>`;
+            document.getElementById("profile").innerHTML = item;
+            profile.style.display = "block";
+            vehtable.style.display = "block";
+            document.getElementById("totalPaid").innerHTML = data.totalPaid ? data.totalPaid : 0;
+            document.getElementById("registration").innerHTML = data.totalRegistered ? data.totalRegistered : 0;
+
+            let vehicle = '';
+            if (data.vehicles) {
+                for (let i = 0; i < data.vehicles.length; i++) {
+                    var date1 = new Date(data.vehicles[i].createdAt);
+                    var jDate1 = date1.toString();
+                    var newDate1 = formatDate(jDate1);
+                    vehicle = vehicle + `<tr>
+                        <th scope="row">${i + 1}</th>
+                        <td>${data.vehicles[i].user.fullName}</td>
+                        <td>${data.vehicles[i].user.mobile}</td>
+                        <td>${data.vehicles[i].vehicleRegNo}</td>
+                        <td>${newDate1}</td>
+                        <td>${data.vehicles[i].status?'Active':'Inactive'}</td>
+                    </tr>`
+                }
+                document.getElementById("vehicle").innerHTML = vehicle;
+            }
+
+            //document.getElementById("depositAmount").innerHTML = `&#8377; ${(data.deposits * 73.5).toFixed(2)}`;
+            //document.getElementById("commission").innerHTML = `&#8377; ${data.commission}`;
+            //document.getElementById("paidAmount").innerHTML = `&#8377; ${data.paidAmount}`;
+            //document.getElementById("remainingAmount").innerHTML = `&#8377; ${data.commission - data.paidAmount}`;
+            //document.getElementById("refCommission").innerHTML = `&#8377; ${data.referralCommission ? data.referralCommission : 0}`;
+            //document.getElementById("referredTracker").innerHTML = data.referredTracker ? data.referredTracker : 0;
+            detail.style.display = "block";
+            logoutBtn.style.display = "block";
+        }
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [day, month, year].join('-');
+        }
+
+        function logOut() {
+            localStorage.removeItem("code");
+            logoutBtn.style.display = "none";
+            topForm.style.display = "flex";
+            pariContent.style.display = "flex";
+            detail.style.display = "none";
+            profile.style.display = "none";
+            vehtable.style.display ="none";
+        }
+
+        function copyLink() {
+            /* Get the text field */
+            var copyText = document.getElementById("rc");
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+            /* Alert the copied text */
+            document.getElementById("cpd").style.display = "inline-block"
+            // alert("Copied the text: " + copyText.value);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>
